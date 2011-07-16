@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Disc Golf Scores</title>
+<script src='jonsmvc.js'></script>
+<style>
+
+
+</style>
+</head>
+<body>
+<button id='button'>Click me</button>
+<script>
+
+var Person = Model({name:'Jon',age:21,weight:150,talk:function(){window.alert('my name is '+this.name())}});
+var Thing = Model({name:'Jon',scores:[0,1,2,3,4]});	
+
+var Jon = new Person();
+var Jack = new Thing();
+for(k in Jon) console.log(k);
+//console.log(Jon);
+
+/*var PersonView = ModelView({
+	className:'PersonView',
+	container:'div',
+	render: '<div style="color:green;">#name#</div><div style="color:blue">#age#</div>'
+});*/
+
+var ThingView = ModelView({
+	className:'ThingView',
+	container:'div',
+	render: '<div style="color:green;">#name#</div><div style="color:blue">?scores?</div>'
+});
+
+//var JonView = new PersonView({parent:document.body,model:Jon});
+var JackView = new ThingView({parent:document.body,model:Jack});
+
+var temp = new Collection();
+for(var i=0 ; i<10 ; i++){
+	temp.add(new Person());
+}
+console.log(temp.collection);
+
+/*var PCView = new CollectionView({
+	collection:temp,
+	model:Person,
+	modelView:PersonView,
+	container:'div',
+	parent:document.body
+});*/
+
+//console.log(PCView);
+
+document.getElementById('button').onclick = function(){
+	temp.each(function(e){
+		e.age(e.age()+1);
+	});
+}
+	
+	
+</script>
+</body>
+</html>
